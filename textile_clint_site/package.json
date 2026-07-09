@@ -1,0 +1,23 @@
+{
+  "name": "textile-order-shipment-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "watch:css": "tailwindcss -i ./src/CSS/input.css -o ./src/CSS/output.css --watch",
+    "build": "tailwindcss -i ./src/CSS/input.css -o ./src/CSS/output.css && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.11"
+  }
+}
