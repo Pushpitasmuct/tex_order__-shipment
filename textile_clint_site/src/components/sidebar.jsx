@@ -1,20 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
+  const location = useLocation();
+
+  // Helper function to dynamically check and apply active styling to menu links
+  const isActive = (path) => {
+    return location.pathname === path
+      ? 'bg-slate-700 text-indigo-400 font-medium' 
+      : 'text-gray-300 hover:bg-slate-800 hover:text-white';
+  };
+
   return (
-    <aside className="w-64 bg-slate-800 text-slate-100 min-h-screen p-4 shadow-inner hidden md:block">
-      <div className="space-y-6">
-        <div>
-          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3 mb-3">Management</h2>
-          <div className="flex flex-col space-y-1">
-            <Link to="/home" className="px-3 py-2 rounded hover:bg-slate-700 transition font-medium text-sm">Dashboard Overview</Link>
-            <Link to="/orders" className="px-3 py-2 rounded hover:bg-slate-700 transition font-medium text-sm">Order Tracking</Link>
-            <Link to="/shipments" className="px-3 py-2 rounded hover:bg-slate-700 transition font-medium text-sm">Shipment Status</Link>
-          </div>
-        </div>
+    <div className="w-64 bg-slate-900 text-white flex flex-col h-full border-r border-slate-850">
+      {/* Sidebar Section Title */}
+      <div className="px-6 py-4">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+          Management
+        </p>
       </div>
-    </aside>
+
+      {/* Navigation Layout */}
+      <nav className="flex-1 px-3 space-y-1">
+        <Link
+          to="/"
+          className={`flex items-center px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${isActive('/') || isActive('/home')}`}
+        >
+          Dashboard Overview
+        </Link>
+
+        <Link
+          to="/orders"
+          className={`flex items-center px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${isActive('/orders')}`}
+        >
+          Order Tracking
+        </Link>
+
+        <Link
+          to="/shipments"
+          className={`flex items-center px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${isActive('/shipments')}`}
+        >
+          Shipment Status
+        </Link>
+      </nav>
+    </div>
   );
 }
 
